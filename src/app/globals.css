@@ -42,6 +42,48 @@ html:not(.dark) body {
   background-attachment: fixed;
 }
 
+html.cyberpunk body {
+  background: radial-gradient(
+      circle at 20% 20%,
+      rgba(255, 0, 255, 0.18) 0%,
+      transparent 45%
+    ),
+    radial-gradient(
+      circle at 80% 0%,
+      rgba(0, 255, 255, 0.12) 0%,
+      transparent 40%
+    ),
+    linear-gradient(160deg, #090012 0%, #130022 35%, #041023 65%, #04080f 100%);
+  background-attachment: fixed;
+}
+
+html.cyberpunk body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.02) 0,
+    rgba(255, 255, 255, 0.02) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  mix-blend-mode: screen;
+  opacity: 0.25;
+}
+
+html.cyberpunk .text-green-600,
+html.cyberpunk .dark\:text-green-400 {
+  color: #00f6ff !important;
+}
+
+html.cyberpunk .bg-green-600,
+html.cyberpunk .dark\:bg-green-700 {
+  background-color: #b400ff !important;
+}
+
 /* 自定义滚动条样式 */
 ::-webkit-scrollbar {
   width: 8px;
@@ -138,12 +180,12 @@ html:not(.dark) body {
 }
 
 /* 从浅色到深色：新内容（深色）从顶部滑入 */
-html.dark::view-transition-new(root) {
+html:is(.dark, .cyberpunk)::view-transition-new(root) {
   animation-name: slide-from-top;
 }
 
 /* 从深色到浅色：新内容（浅色）从底部滑入 */
-html:not(.dark)::view-transition-new(root) {
+html:not(:is(.dark, .cyberpunk))::view-transition-new(root) {
   animation-name: slide-from-bottom;
 }
 
